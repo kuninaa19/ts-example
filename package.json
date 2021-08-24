@@ -1,0 +1,15 @@
+{
+  "name": "ts-ex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node ./dist/sort.js",
+    "build": "tsc && node ./dist/sort",
+    "dev": "nodemon -L --exec ts-node ./sort.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
