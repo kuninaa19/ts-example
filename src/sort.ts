@@ -3,6 +3,9 @@
  * @desc 삽입 정렬 시간복잡도 n^2
  * @desc 버블 정렬 시간복잡도 n^2
  */
+import { randArray } from "./arrayCreater";
+// let sortArr: Array<number> = [4, 5, 1, 2, 11, 8, 3, 1, 2, 5];
+const sortArr = randArray(7000);
 
 class Sort<T> {
   insertionSort(arr: Array<number>) {
@@ -32,9 +35,8 @@ class Sort<T> {
   }
 }
 
-let sortArr: Array<number> = [4, 5, 1, 2, 11, 8, 3, 1, 2, 5];
 const sort = new Sort<number>();
 console.time("time");
-const sortedArr = sort.bubbleSort(sortArr);
+const sortedArr = sort.insertionSort(sortArr);
 console.timeEnd("time");
-console.log("정렬된 배열", sortedArr);
+// console.log("정렬된 배열", sortedArr);

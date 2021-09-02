@@ -10,6 +10,11 @@
     quicksort(arr, 0, arr.length-1);
  */
 
+// var arr: Array<number> = [1, 6, 8, 2, 5];
+import { randArray } from "./arrayCreater";
+
+const arr = randArray(7000);
+
 var position = function (arr: Array<number>, left: number, right: number) {
   var i = left;
   var j = right;
@@ -32,6 +37,7 @@ var position = function (arr: Array<number>, left: number, right: number) {
   return j;
 };
 
+// 위키피디아 퀵소트
 var quicksort = function (arr: Array<number>, left: number, right: number) {
   if (left < right) {
     //기준점을 찾고 기준점을 중심으로 더 작은수, 더 큰수 분류
@@ -45,9 +51,70 @@ var quicksort = function (arr: Array<number>, left: number, right: number) {
   return arr;
 };
 
-var arr: Array<number> = [1, 6, 8, 2, 5];
+// 중복되는 값에 취약한 퀵소트(알고리즘 도서)
+const qsort = function (arr: Array<number>, l: number, u: number) {
+  if (l >= u) {
+    // at most on element, do nothing
+    return;
+  }
+  //goal : partition array around a particular value,
+  let m = l;
+  for (let i = l + 1; i <= u; i++) {
+    // invariant(불변) : x[l+1..m] < x[l] && x[m+1..i-1] >= x[l]
+    if (arr[i] < arr[l]) {
+      [i, m] = [++m, i];
+    }
+    [m, l] = [l, m];
+  }
+
+  // x[l..m-1] < x[m] <= x[m+1..u]
+  qsort(arr, l, m - 1);
+  qsort(arr, m + 1, u);
+};
+
+// 중복값 개선한 퀵소트 (알고리즘 도서)
+var qsort2 = function (arr: Array<number>, l: number, u: number) {
+  if (l >= u) {
+    return;
+  }
+  let pivot = arr[l];
+  let i = l;
+  let j = u + 1;
+
+  while (i > j) {
+    while (i <= u && arr[i] < pivot) i++;
+    while (arr[j] > pivot) j--;
+    [j, i] = [i, j];
+  }
+
+  [j, l] = [l, j];
+
+  qsort2(arr, l, j - 1);
+  qsort2(arr, j + 1, u);
+};
+
+var qsort2 = function (arr: Array<number>, l: number, u: number) {
+  if (l >= u) {
+    return;
+  }
+  let pivot = arr[l];
+  let i = l;
+  let j = u + 1;
+
+  while (i > j) {
+    while (i <= u && arr[i] < pivot) i++;
+    while (arr[j] > pivot) j--;
+    [j, i] = [i, j];
+  }
+
+  [j, l] = [l, j];
+
+  qsort2(arr, l, j - 1);
+  qsort2(arr, j + 1, u);
+};
+
 console.time("e");
-quicksort(arr, 0, arr.length - 1);
+qsort2(arr, 0, arr.length - 1);
 console.timeEnd("e");
 
 // let m = Math.floor(cArr.length / 2);
