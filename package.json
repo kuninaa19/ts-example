@@ -4,12 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node ./dist/sort.js",
+    "test": "jest",
+    "start": "node ./dist/sort.js",
     "build": "tsc && node ./dist/sort",
-    "dev": "nodemon -L --exec ts-node ./src/sort.ts"
+    "dev": "nodemon -L --exec ts-node ./src/qsort.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "7.16.5",
+    "@babel/preset-typescript": "7.16.5",
+    "@types/jest": "27.0.3",
+    "@types/supertest": "2.0.11",
+    "jest": "27.4.5",
+    "supertest": "6.1.6",
+    "ts-jest": "27.1.2"
+  }
 }

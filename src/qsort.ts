@@ -13,7 +13,7 @@
 // var arr: Array<number> = [1, 6, 8, 2, 5];
 import { randArray } from "./arrayCreater";
 
-const arr = randArray(7000);
+const arr = randArray(6000);
 
 var position = function (arr: Array<number>, left: number, right: number) {
   var i = left;
@@ -70,6 +70,8 @@ const qsort = function (arr: Array<number>, l: number, u: number) {
   // x[l..m-1] < x[m] <= x[m+1..u]
   qsort(arr, l, m - 1);
   qsort(arr, m + 1, u);
+
+  return arr;
 };
 
 // 중복값 개선한 퀵소트 (알고리즘 도서)
@@ -91,9 +93,11 @@ var qsort2 = function (arr: Array<number>, l: number, u: number) {
 
   qsort2(arr, l, j - 1);
   qsort2(arr, j + 1, u);
+
+  return arr;
 };
 
-var qsort2 = function (arr: Array<number>, l: number, u: number) {
+var qsort3 = function (arr: Array<number>, l: number, u: number) {
   if (l >= u) {
     return;
   }
@@ -109,13 +113,17 @@ var qsort2 = function (arr: Array<number>, l: number, u: number) {
 
   [j, l] = [l, j];
 
-  qsort2(arr, l, j - 1);
-  qsort2(arr, j + 1, u);
+  qsort3(arr, l, j - 1);
+  qsort3(arr, j + 1, u);
+
+  return arr;
 };
 
 console.time("e");
-qsort2(arr, 0, arr.length - 1);
+const b = qsort(arr, 0, arr.length - 1);
 console.timeEnd("e");
+
+console.log("b", b);
 
 // let m = Math.floor(cArr.length / 2);
 
